@@ -25,7 +25,7 @@ SECRET_KEY = 'q1s9h_u^^am*&oc%!w_)jer0815_8rk0!)=7s#amtfe*4o@hm%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [https://api-django-drf-erica.herokuapp.com]
+ALLOWED_HOSTS = ['api-django-drf-erica.herokuapp.com']
 
 
 # Application definition
