@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class TodoConfig(AppConfig):
+class BankConfig(AppConfig):
     name = 'todo'
