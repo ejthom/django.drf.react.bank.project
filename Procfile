@@ -1,1 +1,1 @@
-web: cd django.drf.react.bank.project && cd app && python manage.py migrate && gunicorn backend.wsgi
+web: cd app && python manage.py migrate && gunicorn main.wsgi
