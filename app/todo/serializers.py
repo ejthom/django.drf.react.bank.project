@@ -16,7 +16,8 @@ class Customer_Serializer( serializers.HyperlinkedModelSerializer ):
         fields = [
             'id',
             'customer_name',
-            'customer_email'
+            'customer_email',
+            'branch'
         ]
 
 class Account_Serializer( serializers.HyperlinkedModelSerializer ):
@@ -24,7 +25,8 @@ class Account_Serializer( serializers.HyperlinkedModelSerializer ):
         model = Account
         fields = [
             'id',
-            'account_id'
+            'account_id',
+            'customer'
         ]
 
 class Product_Serializer( serializers.HyperlinkedModelSerializer ):
