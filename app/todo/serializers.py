@@ -37,5 +37,4 @@ class Product_Serializer( serializers.HyperlinkedModelSerializer ):
             'account',
             'amount',
             'product_type',
-            'branch',
-            'customer'
+        ]
