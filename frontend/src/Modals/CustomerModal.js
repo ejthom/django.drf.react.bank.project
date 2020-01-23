@@ -11,7 +11,7 @@ import {
     Label
 } from "reactstrap";
 
-export default class CustomModal extends Component {
+export default class CustomerModal extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -30,27 +30,37 @@ export default class CustomModal extends Component {
     const { toggle, onSave } = this.props;
     return (
         <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}> Branch Info </ModalHeader>
+        <ModalHeader toggle={toggle}> Customer Info </ModalHeader>
         <ModalBody>
             <Form>
             <FormGroup>
-                <Label for="location_name">Branch Name</Label>
+                <Label for="customer_name">Customer</Label>
                 <Input
                 type="text"
-                name="location_name"
-                value={this.state.activeItem.location_name}
+                name="customer_name"
+                value={this.state.activeItem.customer_name}
                 onChange={this.handleChange}
-                placeholder="Branch"
+                placeholder="Customer Name"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="location"> Location </Label>
+                <Label for="customer_email"> Email </Label>
                 <Input
                 type="text"
-                name="location"
-                value={this.state.activeItem.location}
+                name="customer_email"
+                value={this.state.activeItem.customer_email}
                 onChange={this.handleChange}
-                placeholder="Location"
+                placeholder="Email"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label for="branch"> Branch Name </Label>
+                <Input
+                type="text"
+                name="branch"
+                value={this.state.activeItem.branch}
+                onChange={this.handleChange}
+                placeholder="Branch"
                 />
             </FormGroup>
             </Form>

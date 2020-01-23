@@ -11,7 +11,7 @@ import {
     Label
 } from "reactstrap";
 
-export default class CustomModal extends Component {
+export default class AccountModal extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -30,27 +30,17 @@ export default class CustomModal extends Component {
     const { toggle, onSave } = this.props;
     return (
         <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}> Branch Info </ModalHeader>
+        <ModalHeader toggle={toggle}> Customer Info </ModalHeader>
         <ModalBody>
             <Form>
             <FormGroup>
-                <Label for="location_name">Branch Name</Label>
+                <Label for="customer">Customer</Label>
                 <Input
                 type="text"
-                name="location_name"
-                value={this.state.activeItem.location_name}
+                name="customer"
+                value={this.state.activeItem.customer}
                 onChange={this.handleChange}
-                placeholder="Branch"
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label for="location"> Location </Label>
-                <Input
-                type="text"
-                name="location"
-                value={this.state.activeItem.location}
-                onChange={this.handleChange}
-                placeholder="Location"
+                placeholder="Customer Name"
                 />
             </FormGroup>
             </Form>

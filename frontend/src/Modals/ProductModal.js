@@ -11,7 +11,7 @@ import {
     Label
 } from "reactstrap";
 
-export default class CustomModal extends Component {
+export default class ProductModal extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -30,27 +30,37 @@ export default class CustomModal extends Component {
     const { toggle, onSave } = this.props;
     return (
         <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}> Branch Info </ModalHeader>
+        <ModalHeader toggle={toggle}> Account Info </ModalHeader>
         <ModalBody>
             <Form>
             <FormGroup>
-                <Label for="location_name">Branch Name</Label>
+                <Label for="account">Account</Label>
                 <Input
                 type="text"
-                name="location_name"
-                value={this.state.activeItem.location_name}
+                name="account"
+                value={this.state.activeItem.account}
                 onChange={this.handleChange}
-                placeholder="Branch"
+                placeholder="Account"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="location"> Location </Label>
+                <Label for="amount"> Amount </Label>
                 <Input
                 type="text"
-                name="location"
-                value={this.state.activeItem.location}
+                name="amount"
+                value={this.state.activeItem.amount}
                 onChange={this.handleChange}
-                placeholder="Location"
+                placeholder="Amount"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label for="product_type"> Product Type </Label>
+                <Input
+                type="text"
+                name="product_type"
+                value={this.state.activeItem.product_type}
+                onChange={this.handleChange}
+                placeholder="Product"
                 />
             </FormGroup>
             </Form>

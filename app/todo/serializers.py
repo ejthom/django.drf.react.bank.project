@@ -23,9 +23,6 @@ class Account_Serializer( serializers.HyperlinkedModelSerializer ):
     class Meta:
         model = Account
         fields = [
-            'id',
-            'url',
-            'account_id',
             'customer',
         ]
 

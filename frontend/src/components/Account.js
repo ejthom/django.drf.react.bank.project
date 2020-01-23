@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import CustomModal from "./Modal";
+import AccountModal from "../Modals/AccountModal";
 import axios from "axios";
 
-class Branch extends Component {
+class Account extends Component {
     constructor(props) {
     super(props);
     this.state = {
         viewCompleted: true,
         activeItem: {
-        location_name: "",
-        location: "",
-        location_id: ""
+        customer: "",
         },
         todoList: []
     };
@@ -21,7 +19,7 @@ class Branch extends Component {
     }
     refreshList = () => {
     axios
-        .get("https://api-django-drf-erica.herokuapp.com/branch/")
+        .get("https://api-django-drf-erica.herokuapp.com/account/")
         .then(res => this.setState({ todoList: res.data.results }))
         .catch(err => console.log(err));
     };
@@ -77,9 +75,9 @@ class Branch extends Component {
             className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todoac" : ""
             }`}
-            title={item.location_name}
+            title={item.customer}
         >
-            {item.location_name} | {item.location}
+            {item.customer}
         </span>
         <span>
             <button
@@ -106,21 +104,21 @@ class Branch extends Component {
     this.toggle();
     if (item.id) {
     axios
-        .put(`https://api-django-drf-erica.herokuapp.com/branch/${item.id}/`, item)
+        .put(`https://api-django-drf-erica.herokuapp.com/account/${item.id}/`, item)
         .then(res => this.refreshList());
         return;
     }
     axios
-        .post("https://api-django-drf-erica.herokuapp.com/branch/", item)
+        .post("https://api-django-drf-erica.herokuapp.com/account/", item)
         .then(res => this.refreshList());
     };
     handleDelete = item => {
     axios
-        .delete(`https://api-django-drf-erica.herokuapp.com/branch/${item.id}`)
+        .delete(`https://api-django-drf-erica.herokuapp.com/account/${item.id}`)
         .then(res => this.refreshList());
     };
     createItem = () => {
-    const item = { branch: "", customer: "", product_options: "" };
+    const item = { customer: "" };
     this.setState({ activeItem: item, modal: !this.state.modal });
     };
     editItem = item => {
@@ -146,7 +144,7 @@ class Branch extends Component {
             </div>
         </div>
         {this.state.modal ? (
-            <CustomModal
+            <AccountModal
             activeItem={this.state.activeItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
@@ -156,4 +154,4 @@ class Branch extends Component {
     );
     }
 }
-export default Branch;
+export default Account;

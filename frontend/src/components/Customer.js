@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import CustomModal from "./Modal";
+import CustomerModal from "../Modals/CustomerModal";
 import axios from "axios";
 
-class Branch extends Component {
+class Customer extends Component {
     constructor(props) {
     super(props);
     this.state = {
         viewCompleted: true,
         activeItem: {
-        location_name: "",
-        location: "",
-        location_id: ""
+        customer_name: "",
+        customer_email: "",
+        branch: ""
         },
         todoList: []
     };
@@ -21,7 +21,7 @@ class Branch extends Component {
     }
     refreshList = () => {
     axios
-        .get("https://api-django-drf-erica.herokuapp.com/branch/")
+        .get("https://api-django-drf-erica.herokuapp.com/customer/")
         .then(res => this.setState({ todoList: res.data.results }))
         .catch(err => console.log(err));
     };
@@ -77,9 +77,9 @@ class Branch extends Component {
             className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todoac" : ""
             }`}
-            title={item.location_name}
+            title={item.customer_name}
         >
-            {item.location_name} | {item.location}
+            { item.customer_name } | { item.customer_email } | { item.branch }
         </span>
         <span>
             <button
@@ -106,21 +106,21 @@ class Branch extends Component {
     this.toggle();
     if (item.id) {
     axios
-        .put(`https://api-django-drf-erica.herokuapp.com/branch/${item.id}/`, item)
+        .put(`https://api-django-drf-erica.herokuapp.com/customer/${item.id}/`, item)
         .then(res => this.refreshList());
         return;
     }
     axios
-        .post("https://api-django-drf-erica.herokuapp.com/branch/", item)
+        .post("https://api-django-drf-erica.herokuapp.com/customer/", item)
         .then(res => this.refreshList());
     };
     handleDelete = item => {
     axios
-        .delete(`https://api-django-drf-erica.herokuapp.com/branch/${item.id}`)
+        .delete(`https://api-django-drf-erica.herokuapp.com/customer/${item.id}`)
         .then(res => this.refreshList());
     };
     createItem = () => {
-    const item = { branch: "", customer: "", product_options: "" };
+    const item = { customer_name: "", customer_email: "", branch: "" };
     this.setState({ activeItem: item, modal: !this.state.modal });
     };
     editItem = item => {
@@ -146,7 +146,7 @@ class Branch extends Component {
             </div>
         </div>
         {this.state.modal ? (
-            <CustomModal
+            <CustomerModal
             activeItem={this.state.activeItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
@@ -156,4 +156,4 @@ class Branch extends Component {
     );
     }
 }
-export default Branch;
+export default Customer;
