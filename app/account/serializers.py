@@ -1,11 +1,36 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate
+
+class PasswordSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+    def create(self, validated_data):
+        pass
+    def update(self, instance, validated_data):
+        pass
+    def validate(self, data):
+        """ check that username and new password are different """
+        if data["username"] == data["password"]:
+            raise serializers.ValidationError("Username and new password should be different")
+        return data
+# PERMISSIONS
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ('name',)
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
+    groups = PermissionSerializer(many=True)
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('id', 'username', 'email', 'groups')
+    def created(self, validated_data):
+        permissions_data = validated_data.pop('groups')
+        user = User.objects.create(**validated_data)
+        for permission_data in permissions_data:
+            Permission.objects.create(user=user, **permissions_data)
+        return user
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,8 +53,3 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
-
-
-
-
-
