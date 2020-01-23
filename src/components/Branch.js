@@ -79,7 +79,7 @@ class Branch extends Component {
             }`}
             title={item.location_name}
         >
-            {item.location_name} {item.location}
+            {item.location_name} | {item.location}
         </span>
         <span>
             <button
