@@ -5,7 +5,7 @@ import Account from "./components/Account";
 import Product from "./components/Product";
 import Header from "./components/layout/Headers";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Reset } from "./components/accounts/reset";
+import Reset from "./components/accounts/reset";
 import Login from "./components/accounts/login";
 import Register from "./components/accounts/register";
 import PrivateRoute from "./components/common/PrivateRoute";

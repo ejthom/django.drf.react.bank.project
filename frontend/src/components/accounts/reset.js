@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { reset } from "../../actions/auth";
+import {reset} from "../../actions/auth";
 
-export class Reset extends Component {
+class Reset extends Component {
   state = {
         username: "",
         password: ""
@@ -13,14 +13,23 @@ export class Reset extends Component {
         reset: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool
     };
+    componentDidMount() {
+      console.log(this.props)
+    }
+
+
 onSubmit = e => {
         e.preventDefault();
-        console.log(this.props)
+        this.newMethod();
         this.props.reset(this.state.username, this.state.password);
     };
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
+  newMethod() {
+    console.log(this.props);
+  }
+
     render() {
         if(this.props.isAuthenticated){
             return <Redirect to="/branch"/>
@@ -66,4 +75,9 @@ onSubmit = e => {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
-export default connect(mapStateToProps, { reset })(Reset);
+
+const mapDispatchToProps = dispatch => ({
+  reset: (email, password) => dispatch(reset(email, password))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reset);

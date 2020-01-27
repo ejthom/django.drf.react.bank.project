@@ -81,7 +81,7 @@ export const reset = (username, password) => dispatch => {
     // Request Body
     const body = JSON.stringify({ username, password });
     axios
-      .put('http://127.0.0.1:8000/users/password', body, config)
+      .put('http://127.0.0.1:8000/users/api/auth/password', body, config)
       .then(res => {
           dispatch({
             type: RESET_SUCCESS,
